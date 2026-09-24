@@ -1,0 +1,34 @@
+# Overrides the default config for elevation_mapping from elevation_mapping_cupy package (core_param.yaml)
+/elevation_mapping_node:
+  ros__parameters:
+    map_frame: 'odom'
+    base_frame: 'base_link'
+    corrected_map_frame: 'odom'
+
+    # Robot centric local map: 4x4m with 5cm resolution (80 cells)
+    resolution: 0.05 # Value in meters
+    map_length: 4.0  # Value in meters
+
+    min_valid_distance: 0.15
+    max_height_range: 1.0
+    max_ray_length: 5.0
+    ramped_height_range_a: 0.3
+    ramped_height_range_b: 1.0
+    ramped_height_range_c: 0.2
+    sensor_noise_factor: 0.05
+
+    # Point cloud inputs, fused into the map
+    subscribers:
+      lidar:
+        topic_name: '/scan'
+        data_type: pointcloud
+
+    publishers:
+      elevation_map_raw:
+        layers: ['elevation', 'traversability', 'variance']
+        basic_layers: ['elevation']
+        fps: 5.0
+      elevation_map_filter:
+        layers: ['min_filter', 'smooth', 'inpaint', 'elevation']
+        basic_layers: ['min_filter']
+        fps: 3.0

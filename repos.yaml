@@ -1,0 +1,7 @@
+# External source dependencies, imported into the workspace by docker/Dockerfile.
+repositories:
+  elevation_mapping_cupy:
+    type: git
+    url: https://github.com/leggedrobotics/elevation_mapping_cupy.git
+    # release/jazzy
+    version: 68e18856567e5dc406418e7c816ef0e4c00d4987

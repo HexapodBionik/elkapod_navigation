@@ -2,7 +2,7 @@ name: elkapod-navigation
 
 x-vol-x11: &vol-x11 /tmp/.X11-unix:/tmp/.X11-unix:rw
 x-vol-shm: &vol-shm /dev/shm:/dev/shm:rw
-x-vol-xauth: &vol-xauth ${HOME}/.Xauthority:/root/.Xauthority:rw
+x-vol-xauth: &vol-xauth ${HOME}/.Xauthority:/home/ubuntu/.Xauthority:rw
 
 x-common: &common
   build:
