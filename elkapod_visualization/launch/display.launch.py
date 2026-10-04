@@ -1,4 +1,5 @@
 import os
+
 from launch import LaunchDescription
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
@@ -9,7 +10,7 @@ def generate_launch_description():
         "elkapod_visualization"
     )
 
-    default_rviz_config_path = os.path.join(vis_package, "config/elkapod.rviz")
+    default_rviz_config_path = os.path.join(vis_package, "config/config.rviz")
 
 
     ld = LaunchDescription()
@@ -19,7 +20,8 @@ def generate_launch_description():
             executable="rviz2",
             output="screen",
             arguments=["-d", default_rviz_config_path],
-            parameters=[{'use_sim_time': True},]
+            parameters=[{'use_sim_time': True},],
+            additional_env={'LD_PRELOAD': '/usr/lib/x86_64-linux-gnu/liboctomap.so'}
         )
     )
 
