@@ -7,7 +7,7 @@
 
     # Robot centric local map: 4x4m with 5cm resolution (80 cells)
     resolution: 0.05 # Value in meters
-    map_length: 4.0  # Value in meters
+    map_length: 8.0  # Value in meters
 
     min_valid_distance: 0.15
     max_height_range: 1.0
@@ -27,8 +27,8 @@
       elevation_map_raw:
         layers: ['elevation', 'traversability', 'variance']
         basic_layers: ['elevation']
-        fps: 5.0
+        fps: 10.0
       elevation_map_filter:
         layers: ['min_filter', 'smooth', 'inpaint', 'elevation']
         basic_layers: ['min_filter']
-        fps: 3.0
+        fps: 5.0

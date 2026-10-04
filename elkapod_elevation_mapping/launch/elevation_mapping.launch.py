@@ -14,6 +14,7 @@ def generate_launch_description():
 
     core_param_path = os.path.join(cupy_share, 'config', 'core', 'core_param.yaml')
     default_config_path = os.path.join(elkapod_share, 'config', 'elkapod_setup.yaml')
+    occupancy_grid_config_path = os.path.join(elkapod_share, 'config', 'occupancy_grid.yaml')
     default_rviz_path = os.path.join(elkapod_share, 'rviz', 'elevation_mapping.rviz')
 
     use_sim_time = LaunchConfiguration('use_sim_time')
@@ -30,6 +31,16 @@ def generate_launch_description():
             {
                 'use_sim_time': use_sim_time,
             },
+        ],
+    )
+
+    occupancy_grid_node = Node(
+        package='grid_map_visualization',
+        executable='grid_map_visualization',
+        output='screen',
+        emulate_tty=True,
+        parameters=[
+            occupancy_grid_config_path,
         ],
     )
 
@@ -56,5 +67,6 @@ def generate_launch_description():
             'rviz_config', default_value=default_rviz_path,
             description='RViz config file.'),
         elevation_mapping_node,
+        occupancy_grid_node,
         rviz_node,
     ])
