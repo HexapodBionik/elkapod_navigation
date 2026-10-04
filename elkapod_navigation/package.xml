@@ -2,10 +2,20 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>elkapod_navigation</name>
-  <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="root@todo.todo">root</maintainer>
-  <license>TODO: License declaration</license>
+  <version>1.1.0</version>
+  <description>Elkapod navigation stack base package</description>
+  <author email="baraniak.damian@gmail.com">Damian Baraniak</author>
+  <author email="piotrpatek17@gmail.com">Piotr Patek</author>
+  <maintainer email="piotrpatek17@gmail.com">Piotr Patek</maintainer>
+  <license>MIT</license>
+
+  <exec_depend>ros2launch</exec_depend>
+  <exec_depend>nav2_bringup</exec_depend>
+  <exec_depend>nav2_common</exec_depend>
+  <exec_depend>nav2_regulated_pure_pursuit_controller</exec_depend>
+  <exec_depend>nav2_navfn_planner</exec_depend>
+  <exec_depend>elkapod_slam</exec_depend>
+  <exec_depend>elkapod_elevation_mapping</exec_depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>

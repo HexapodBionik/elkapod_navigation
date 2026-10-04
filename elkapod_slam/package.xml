@@ -4,8 +4,10 @@
   <name>elkapod_slam</name>
   <version>0.0.1</version>
   <description>Wrapper of rtabmap tools for slam, localization and odometry</description>
-  <maintainer email="baraniak.damian@gmail.com">root</maintainer>
-  <license>TODO: License declaration</license>
+  <author email="baraniak.damian@gmail.com">Damian Baraniak</author>
+  <author email="piotrpatek17@gmail.com">Piotr Patek</author>
+  <maintainer email="piotrpatek17@gmail.com">Piotr Patek</maintainer>
+  <license>MIT</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 

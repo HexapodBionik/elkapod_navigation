@@ -1,17 +1,22 @@
-from launch import LaunchDescription, LaunchContext
-from launch.actions import DeclareLaunchArgument, OpaqueFunction, IncludeLaunchDescription
-from launch.substitutions import LaunchConfiguration
-from launch_ros.actions import Node
-from launch.conditions import IfCondition
-from launch.launch_description_sources import PythonLaunchDescriptionSource
-from ament_index_python.packages import get_package_share_directory
 import datetime
 import os
+
+from ament_index_python.packages import get_package_share_directory
+from launch import LaunchContext, LaunchDescription
+from launch.actions import (
+    DeclareLaunchArgument,
+    IncludeLaunchDescription,
+    OpaqueFunction,
+)
+from launch.conditions import IfCondition
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import LaunchConfiguration
+from launch_ros.actions import Node
 
 
 def launch_setup(context: LaunchContext, *args, **kwargs):
     namespace = 'perception'
-    
+
     elkapod_slam_dir = get_package_share_directory('elkapod_slam')
 
     database_name = LaunchConfiguration('rtab_db').perform(context)
@@ -138,7 +143,7 @@ def launch_setup(context: LaunchContext, *args, **kwargs):
     nodes = [
         # Assemble deskewed scans based on icp odometry
         Node(
-            package='rtabmap_util', executable='point_cloud_assembler', output='screen',       
+            package='rtabmap_util', executable='point_cloud_assembler', output='screen',
             parameters=[cloud_assembler_parameters],
             remappings=[('cloud', lidar_topic),
                         ('odom', 'icp_odom')],
@@ -173,7 +178,7 @@ def launch_setup(context: LaunchContext, *args, **kwargs):
         Node(
             package='rtabmap_odom', executable='icp_odometry', output='screen',
             parameters=[shared_parameters, icp_odometry_parameters,
-                        {'config_path': rtabmap_config_path, 
+                        {'config_path': rtabmap_config_path,
                          'publish_tf': True
                         }],
             remappings= [('imu', imu_topic),
@@ -200,9 +205,9 @@ def launch_setup(context: LaunchContext, *args, **kwargs):
         'namespace': namespace,
         'sim_mode': use_sim_time}.items()
         )
-    
+
     multiple_odoms = LaunchConfiguration('fuse_odoms').perform(context)
-    
+
     if multiple_odoms.lower() in ('false', '0'):
         return [*nodes]
     else:
